@@ -1,0 +1,12 @@
+{
+  "types": {
+    "testAb": "Adição ou mudança para utilização de testes AB",
+    "build": true,
+    "docs": false,
+    "temp": false,
+    "ci": false
+  },
+  "max-len": 120,
+  "debug": true,
+  "lang": "pt-BR"
+}
