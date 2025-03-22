@@ -1,0 +1,33 @@
+{
+  "git": {
+    "commitMessage": "chore: release v${version}",
+    "tagName": "v${version}",
+    "tagAnnotation": "Release v${version}",
+    "push": true,
+    "requireBranch": ["master", "develop"],
+    "requireCleanWorkingDir": true,
+    "requireUpstream": true,
+    "commit": true,
+    "tag": true
+  },
+  "npm": {
+    "publish": false
+  },
+  "hooks": {
+    "before:init": ["echo '🚀 Iniciando processo de release...'"],
+    "after:bump": [
+      "node -e \"const fs = require('fs'); const pkg = JSON.parse(fs.readFileSync('./projects/fupu-library-test/package.json', 'utf8')); pkg.version = '${version}'; fs.writeFileSync('./projects/fupu-library-test/package.json', JSON.stringify(pkg, null, 2) + '\\n');\"",
+      "ng build fupu-library-test --configuration production",
+      "echo '📦 Versão ${version} gerada com sucesso!'"
+    ],
+    "after:release": [
+      "echo '🎉 Release v${version} completada com sucesso!'",
+      "echo '📤 Publicando no npm...'",
+      "cd dist/fupu-library-test && npm publish --userconfig ../../.npmrc --tag next",
+      "echo '✅ Pacote publicado com sucesso!'"
+    ]
+  },
+  "github": {
+    "release": false
+  }
+}

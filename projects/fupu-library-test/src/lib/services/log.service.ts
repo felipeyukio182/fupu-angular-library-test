@@ -6,8 +6,11 @@ import { LOG_CONFIG } from '../tokens/logConfig';
   providedIn: 'root',
 })
 export class LogService {
-
-  constructor(@Optional() @Inject(LOG_CONFIG) private logConfig: any, @Inject(PLATFORM_ID) private platformId: any, private location: Location) {
+  constructor(
+    @Optional() @Inject(LOG_CONFIG) private logConfig: any,
+    @Inject(PLATFORM_ID) private platformId: any,
+    private location: Location,
+  ) {
     console.log(this.logConfig);
   }
 
@@ -27,10 +30,8 @@ export class LogService {
   }
 
   private getSiteUrl(): string {
-    const baseUrl = this.logConfig?.siteUrl.endsWith('/')
-      ? this.logConfig?.siteUrl.substring(0, this.logConfig?.siteUrl.length - 1)
-      : this.logConfig?.siteUrl;
-    return `${baseUrl}/onco/oncologiador`;
+    const baseUrl = this.logConfig?.siteUrl.endsWith('/') ? this.logConfig?.siteUrl.substring(0, this.logConfig?.siteUrl.length - 1) : this.logConfig?.siteUrl;
+    return `${baseUrl}`;
   }
 
   getPageURL() {

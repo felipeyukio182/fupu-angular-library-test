@@ -1,13 +1,23 @@
 {
   "name": "fupu-workspace",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
-    "prepare": "husky"
+    "prepare": "husky",
+    "release": "release-it --ci",
+    "release:minor": "release-it minor --ci",
+    "release:major": "release-it major --ci",
+    "release:patch": "release-it patch --ci",
+    "release:alpha": "release-it --config=.release-it-alpha.json --preRelease=alpha --npm.tag=next --ci",
+    "release:alpha:increment": "release-it --config=.release-it-alpha.json --preRelease=alpha --npm.tag=next --preReleaseId=alpha --ci",
+    "release:alpha:patch": "release-it patch --config=.release-it-alpha.json --preRelease=alpha --npm.tag=next --increment=prerelease --ci",
+    "release:alpha:minor": "release-it minor --config=.release-it-alpha.json --preRelease=alpha --npm.tag=next --increment=prerelease --ci",
+    "release:alpha:major": "release-it major --config=.release-it-alpha.json --preRelease=alpha --npm.tag=next --increment=prerelease --ci",
+    "release:dry-run": "release-it --dry-run --ci"
   },
   "private": false,
   "dependencies": {
@@ -29,6 +39,7 @@
     "@angular/compiler-cli": "^17.3.0",
     "@commitlint/cli": "^19.8.0",
     "@commitlint/config-conventional": "^19.8.0",
+    "@release-it/conventional-changelog": "^10.0.0",
     "@types/jasmine": "~5.1.0",
     "husky": "^9.1.7",
     "jasmine-core": "~5.1.0",
@@ -40,6 +51,7 @@
     "ng-packagr": "^17.3.0",
     "prettier": "^3.5.3",
     "pretty-quick": "^4.1.1",
+    "release-it": "^18.1.2",
     "typescript": "~5.4.2"
   }
 }
